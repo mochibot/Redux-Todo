@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons' 
 
 class TodoForm extends React.Component {
   constructor() {
@@ -24,10 +26,10 @@ class TodoForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='todo-form'>
         <form onSubmit={this.addTaskHandler}>
-          <input placeholder='Enter task' value={this.state.newTask} onChange={this.taskInput} />
-          <button>Add task</button>
+          <input placeholder='Enter task' value={this.state.newTask} onChange={this.taskInput} required/>
+          <button><FontAwesomeIcon className='add-btn' icon={faPlus}/></button>
         </form>
       </div>
     )

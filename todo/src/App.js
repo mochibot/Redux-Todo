@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import './App.scss';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
 import { addTask, toggleTask, deleteTask } from './actions';
@@ -26,10 +26,12 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <TodoList list={this.props.todos} toggleTask={this.toggleTaskHandler} deleteTask={this.deleteTaskHandler} />
+        <div className="App-container">
+          <h1>My Todo List (Version 2)</h1>
           <TodoForm addTask = {this.props.addTask}/>
-        </header>
+          <TodoList list={this.props.todos} toggleTask={this.toggleTaskHandler} deleteTask={this.deleteTaskHandler} />
+        </div>
+        
       </div>
     );
   }
