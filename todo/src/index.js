@@ -6,7 +6,18 @@ import './index.css';
 import App from './App';
 import { reducer } from './reducers';
 
+
 const store = createStore(reducer);
+
+const saveState = (state) => {
+  localStorage.setItem('todo-state', JSON.stringify(state));
+}
+
+store.subscribe(() => {
+  saveState({
+    todos: store.getState().todos
+  })
+})
 
 ReactDOM.render(
   <Provider store={store}>

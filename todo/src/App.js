@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import { addTask } from './actions';
+import { addTask, toggleTask, deleteTask } from './actions';
 
 class App extends React.Component {
   constructor() {
@@ -13,11 +13,21 @@ class App extends React.Component {
     }
   }
 
+  toggleTaskHandler = (event, id) => {
+    event.preventDefault();
+    this.props.toggleTask(id);
+  }
+
+  deleteTaskHandler = (event, id) => {
+    event.preventDefault();
+    this.props.deleteTask(id);
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <TodoList list={this.props.todos} />
+          <TodoList list={this.props.todos} toggleTask={this.toggleTaskHandler} deleteTask={this.deleteTaskHandler} />
           <TodoForm addTask = {this.props.addTask}/>
         </header>
       </div>
@@ -31,4 +41,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { addTask })(App);
+export default connect(mapStateToProps, { addTask, toggleTask, deleteTask })(App);
